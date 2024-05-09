@@ -1,7 +1,9 @@
 package main
 
-import "log"
+import "github.com/krokakrola/emails_sender/internal/api"
 
 func main() {
-	log.Println("Start server 1")
+	router := api.NewApiRouter()
+
+	router.InitRoutes()
 }
