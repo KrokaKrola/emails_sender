@@ -1,13 +1,24 @@
-# Build the application
-all: build
+build-development:
+	@echo "Building development..."
+	@go build -o main cmd/api/main.go
 
-build:
-	@echo "Building..."
+build-production:
+	@echo "Building production..."
 	@go build -o main cmd/api/main.go
 
 # Run the application
+run-development:
+	@go run cmd/api/main.go --app_env=development
+
+run-production:
+	@go run cmd/api/main.go --app_env=production
+
 run:
-	@go run cmd/api/main.go
+	@echo "Running development"
+	@make run-development
+
+build:
+	@make build-development
 
 # Create DB container
 docker-run:
@@ -53,5 +64,3 @@ watch:
 	        exit 1; \
 	    fi; \
 	fi
-
-.PHONY: all build run test clean
